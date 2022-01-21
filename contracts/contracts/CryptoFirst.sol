@@ -12,7 +12,7 @@ contract CryptoFirst {
     }
 
     constructor() {
-        createContact("Manpreet Singh", "9878128781");
+        createContact("Manpreet Singh", "phone");
     }
 
     mapping(uint256 => Contact) public contacts;

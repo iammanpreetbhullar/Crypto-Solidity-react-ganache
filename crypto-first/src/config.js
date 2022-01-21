@@ -1,4 +1,4 @@
-export const CryptoFirst_ADDRESS = "0x30181c0717b26b4b03E9A73e1a483a40b88232b8";
+export const CryptoFirst_ADDRESS = "0xD0669B2CD5B36b9FBf2693a2A5A4F26aFb5248Ae";
 export const CryptoFirst_ABI = [
   {
     "inputs": [],
