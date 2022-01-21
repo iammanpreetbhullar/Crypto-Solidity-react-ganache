@@ -8,6 +8,7 @@ function App() {
   const [account, setAccount] = useState();
   const [contractList, setContractList] = useState();
   const [contacts, setContacts] = useState([]);
+  const [balance, setBalance] = useState()
 
   useEffect(() => {
     async function load() {
@@ -16,7 +17,7 @@ function App() {
       setAccount(accounts[0]);
       
       const balance = await web3.eth.getBalance(accounts[0])
-      console.log(balance)
+      setBalance(balance)
       const contracts = new web3.eth.Contract(CryptoFirst_ABI, CryptoFirst_ADDRESS)
       setContractList(contracts)      
       const counter = await contracts.methods.count().call()
@@ -30,14 +31,17 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <p>Your account is: {account}</p>
+      <h2>Hello</h2>     
       <ul>
         {
           Object.keys(contacts).map((contact, index) => (
             <li key={`${contacts[index].name}-${index}`}>
-              <h4>{contacts[index].name}</h4>
+              <h3>{contacts[index].name}</h3>
+              <span><b>Your account is: </b>{account}</span>
+              <br/>
               <span><b>Phone: </b>{contacts[index].phone}</span>
+              <br/>
+              <span><b>Balance: </b>{balance / 10 ** 18} ETH</span>
             </li>
           ))
         }
