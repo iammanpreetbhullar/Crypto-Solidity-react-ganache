@@ -11,17 +11,17 @@ function App() {
 
   useEffect(() => {
     async function load() {
-      const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545')
+      const web3 = new Web3('http://localhost:7545')
       const accounts = await web3.eth.getAccounts()
       setAccount(accounts[0]);
-      const addr = '0xCe1D7DE3D9F92A3860bfAa5C942DD3ba87C4152D';
-      const balance = await web3.eth.getBalance(addr)
+      
+      const balance = await web3.eth.getBalance(accounts[0])
       console.log(balance)
       const contracts = new web3.eth.Contract(CryptoFirst_ABI, CryptoFirst_ADDRESS)
-      setContractList(contracts)
+      setContractList(contracts)      
       const counter = await contracts.methods.count().call()
       for (var i = 1; i <= counter; i++) {
-        const contact = await contracts.methods.contacts[i].call();
+        const contact = await contracts.methods.contacts(i).call();
         setContacts((contacts) => [...contacts, contact]);
       }
     }
